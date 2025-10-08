@@ -3,18 +3,15 @@
 set -euo pipefail
 
 if [ ! -d ".venv" ]; then
+  echo "Creating Python virtual environment..."
   python3 -m venv .venv
 fi
 
 source .venv/bin/activate
-
 pip install --upgrade pip
+
+echo "Installing pre-commit and setting up hooks..."
 pip install pre-commit
-
-if [ -f "requirements.txt" ]; then
-  pip install -r requirements.txt
-fi
-
 pre-commit install
 
-echo "Setup complete"
+echo "Dependencies installed and pre-commit hooks configured."
